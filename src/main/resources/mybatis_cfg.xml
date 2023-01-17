@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 引入配置文件 -->
+    <properties resource="mysql.properties"></properties>
+    <typeAliases>
+        <!-- 设置方式1，一个一个配置 type中放置的是类的全路径，alias中放置的是 类别名
+        <typeAlias type="com.tyh.entity.UserEntity" alias="UserEntity"/> -->
+        <!-- 设置方式2，自动扫描，将Java类的类名作为类的 类别名 -->
+        <package name="com.demo.entity"/>
+    </typeAliases>
+    <!--plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="supportMethodsArguments" value="true"/>
+            <property name="params" value="pageNum=1,pageSize=10;"/>
+        </plugin>
+    </plugins-->
+    <!--plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+            <property name="offsetAsPageNum" value="false"/>
+            <property name="rowBoundsWithCount" value="false"/>
+            <property name="pageSizeZero" value="true"/>
+            <property name="reasonable" value="false"/>
+            <property name="supportMethodsArguments" value="false"/>
+            <property name="returnPageInfo" value="none"/>
+        </plugin>
+    </plugins-->
+    <environments default="dev">
+        <environment id="dev">
+            <!-- 代表使用JDBC的提交和回滚来管理事务 -->
+            <transactionManager type="JDBC"/>
+            <!-- mybatis提供了3种数据源类型，分别是：POOLED,UNPOOLED,JNDI -->
+            <!-- POOLED 表示支持JDBC数据源连接池 -->
+            <!-- UNPOOLED 表示不支持数据源连接池 -->
+            <!-- JNDI 表示支持外部数据源连接池 -->
+            <dataSource type="POOLED">
+                <!-- ${jdbc.driver}代表配置文件中的某一项的key -->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!-- 映射方式1，一个一个设置
+        <mapper resource="com.tyh.dao.mapper.UserMapper.xml"/> -->
+        <!-- 映射方式2，自动扫描包内的Mapper接口与配置文件 -->
+        <package name="com/demo/dao/mapper"/>
+    </mappers>
+</configuration>

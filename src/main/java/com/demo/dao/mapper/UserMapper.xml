@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+        <!--
+        cache 配置给定命名空间的缓存
+        cache-ref 从其他命名空间引用缓存配置
+        resultType 返回值类型
+        resultMap 描述如何从数据库结果集中装载你的对象
+        parameterType 参数类型
+        parameterMap 已过时
+        sql 可重用的SQL语句块
+        insert 插入语句
+        update 更新语句
+        delete 删除语句
+        select 查询语句
+        -->
+
+        <!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.demo.dao.mapper.UserMapper">
+    <!-- 自定义返回结果集 如果实体属性名与列名一致则不需要此部分，若不一致则需要 -->
+    <!--<resultMap id="userMap" type="UserBean">-->
+    <!--<id property="id" column="id" javaType="java.lang.Integer"></id>-->
+    <!--<result property="username" column="username" javaType="java.lang.String"></result>-->
+    <!--<result property="password" column="password" javaType="java.lang.String"></result>-->
+    <!--<result property="account" column="account" javaType="java.lang.Double"></result>-->
+    <!--</resultMap>-->
+
+    <!-- 各种标签中的id属性与mapper接口中的方法名一一对应，id属性必须唯一不能重复使用，parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型 -->
+    <!-- #{}中的内容，为占位符，当参数为某个Entity时，表示放置该Entity对象的属性值  -->
+
+    <!-- useGeneratedKeys：（仅对insert有用）这会告诉MyBatis使用JDBC的getGeneratedKeys方法来取出由数据（比如：像 MySQL 和 SQLServer 这样的数据库管理系统的自动递增字段）内部生成的主键。默认值： false。 -->
+    <!-- keyProperty：（仅对 insert有用）标记一个属性， MyBatis 会通过 getGeneratedKeys或者通过 insert 语句的 selectKey 子元素设置它的值。默认：不设置。 -->
+    <insert id="add" useGeneratedKeys="true">
+        insert into admin_message(username, password , sex , phonenum , userType)
+        values (#{username},#{password},#{sex},#{phonenum},#{userType});
+    </insert>
+    <delete id="delete" parameterType="String">
+        delete from admin_message where username=#{username};
+    </delete>
+    <update id="update" >
+        update admin_message set password=#{password}, sex=#{sex},phonenum=#{phonenum},userType=#{userType} where username=#{username};
+    </update>
+    <update id="setlogtime">
+        update admin_message set lastlogtime=#{lastlogtime} where username=#{username};
+    </update>
+    <update id="changepw">
+        update admin_message set password=#{password} where username=#{username};
+    </update>
+    <!-- select节点必须有resultType属性如果不是自定义结果集就可以直接写实体包名[要含包名的完整类名] -->
+    <select id="get" resultType="com.demo.entity.User">
+        select * from admin_message where username=#{username};
+    </select>
+    <select id="list" resultType="com.demo.entity.User">
+       select * from admin_message;
+    </select>
+</mapper>

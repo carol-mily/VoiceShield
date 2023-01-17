@@ -1,0 +1,48 @@
+{
+  "count": 49416,
+  "code": 0,
+  "msg": null,
+  "data": [
+    {
+      "date": "2017-09-20",
+      "uv": 41,
+      "datatype": "mon",
+      "shopid": 0,
+      "id": 5,
+      "aid": 289714
+    },
+    {
+      "date": "2017-09-20",
+      "uv": 2,
+      "datatype": "mon",
+      "shopid": 0,
+      "id": 6,
+      "aid": 295413
+    },
+    {
+      "date": "2017-09-20",
+      "uv": 3,
+      "datatype": "mon",
+      "shopid": 0,
+      "id": 7,
+      "aid": 29956
+    },
+    {
+      "date": "2017-09-20",
+      "uv": 1,
+      "datatype": "mon",
+      "shopid": 0,
+      "id": 8,
+      "aid": 301432
+    },
+    {
+      "date": "2017-09-20",
+      "uv": 1,
+      "datatype": "mon",
+      "shopid": 0,
+      "id": 9,
+      "aid": 330976
+    }
+
+  ]
+}
